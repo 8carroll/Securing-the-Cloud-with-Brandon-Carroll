@@ -33,7 +33,7 @@ resource "aws_route" "internet_access" {
 }
 
 resource "aws_route_table_association" "subnet_assoc" {
-  count = length(var.subnet_cidrs)
+  count          = length(var.subnet_cidrs)
   subnet_id      = aws_subnet.firewall[count.index].id
   route_table_id = aws_route_table.public.id
 }
