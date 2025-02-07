@@ -1,13 +1,12 @@
-# locals {
-#     s3_bucket_name = ${$Environment.TF_BUCKET}
-# }
-
+#############################
+# TERRAFORM BACKEND (S3 + DDB)
+#############################
 terraform {
   backend "s3" {
-    region         = "us-west-2" # locals.s3_bucket_name
+    bucket         = var.s3_bucket_name
+    key            = "network-firewall/terraform.tfstate"
+    region         = var.aws_region
     encrypt        = true
-    dynamodb_table = "terraform_state_lock"
-    bucket         = "terraformstatebucketsecuringtheawscloud"
-    key            = "123"
+    dynamodb_table = var.dynamodb_table_name
   }
 }
