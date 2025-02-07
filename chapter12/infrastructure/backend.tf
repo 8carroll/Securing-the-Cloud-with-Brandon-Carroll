@@ -3,10 +3,10 @@
 #############################
 terraform {
   backend "s3" {
-    bucket         = var.s3_bucket_name
+    bucket         = "terraformstatebucketsecuringtheawscloud"
     key            = "network-firewall/terraform.tfstate"
-    region         = var.aws_region
+    region         = "us-west-2"
     encrypt        = true
-    dynamodb_table = var.dynamodb_table_name
+    dynamodb_table = "terraform_state_lock"
   }
 }
